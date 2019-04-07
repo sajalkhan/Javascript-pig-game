@@ -1,5 +1,5 @@
 
-var scores, roundScore, activePlayer, dice, play;
+var scores, roundScore, activePlayer, dice,count=0, play;
 
 init();
 
@@ -14,8 +14,10 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         result.style.display = 'block';
         result.src = 'dice-' + dice + '.png';
 
+        dice===6?count++:count=0;
+
         //update score
-        if (dice !== 1) {
+        if (dice !== 1 && count!==2) {
             roundScore += dice;
             document.getElementById('current-' + activePlayer).textContent = roundScore;
         }
@@ -35,7 +37,16 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
         document.getElementById('current-' + activePlayer).textContent = 0;
 
-        if (scores[activePlayer] >= 30) {
+        var winningScore;
+        var input=document.getElementById('fscore').Value;
+
+        if(input){
+            winningScore=input;
+        }else{
+            winningScore=100;
+        }
+
+        if (scores[activePlayer] >=winningScore) {
             document.querySelector('.dice').style.display = 'none';
             document.getElementById('name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
