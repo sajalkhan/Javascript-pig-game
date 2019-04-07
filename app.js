@@ -1,5 +1,5 @@
 
-var scores, roundScore, activePlayer, dice,count=0, play;
+var scores, roundScore, activePlayer, dice,count=0, play,input;
 
 init();
 
@@ -38,7 +38,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.getElementById('current-' + activePlayer).textContent = 0;
 
         var winningScore;
-        var input=document.getElementById('fscore').Value;
+        input=document.getElementById('fscore').value;
 
         if(input){
             winningScore=input;
